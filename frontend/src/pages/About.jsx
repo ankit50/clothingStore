@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
+import Hero from "../components/Hero";
 
 export const About = () => {
-  return (
-    <div>About</div>
-  )
-}
+  return <div></div>;
+};
+export default About;
