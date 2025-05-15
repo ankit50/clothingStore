@@ -102,7 +102,7 @@ const PlaceOrder = () => {
               >
                 {" "}
               </p>
-              <img className="h-5 mx-4" src={assets.razorpay_logo} />
+              <img className="h-5 mx-4" src={assets.khalti_logo} />
             </div>
             <div
               onClick={() => {
