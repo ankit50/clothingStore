@@ -1,4 +1,5 @@
 import uploadOnCloudinary from "../config/cloudinary.js";
+import productModel from "../models/productModel.js";
 import fs from "fs";
 const addProduct = async (req, res) => {
   try {
@@ -30,16 +31,53 @@ const addProduct = async (req, res) => {
       fs.unlinkSync(img.path);
     }
     console.log(uploadedImageUrls);
+    //product data to be added to database
+    const productData = {
+      name,
+      description,
+      price: Number(price),
+      category,
+      subCategory,
+      bestSeller: bestSeller === "true" ? true : false,
+      sizes: JSON.parse(sizes),
+      image: uploadedImageUrls,
+      date: Date.now(),
+    };
+    const product = new productModel(productData);
+    await product.save();
+    res.json({ success: true, message: "Product added to database." });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
 
-const listProducts = async (req, res) => {};
+const listProducts = async (req, res) => {
+  try {
+    const products = await productModel.find({});
+    res.json({ success: true, products });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
 
-const removeProduct = async (req, res) => {};
+const removeProduct = async (req, res) => {
+  try {
+    await productModel.findByIdAndDelete(req.body.id);
+    res.json({ success: true, message: "Product removed" });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
 
-const singleProduct = async (req, res) => {};
+const singleProduct = async (req, res) => {
+  try {
+    const { productId } = req.body;
+    const product = await productModel.findById(productId);
+    res.json({ success: true, product });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
 
 export { addProduct, listProducts, removeProduct, singleProduct };
