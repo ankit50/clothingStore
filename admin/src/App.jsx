@@ -17,7 +17,6 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("token", token);
   }, [token]);
-
   return (
     <div className="bg-gray-50 min-h-screen">
       <ToastContainer />

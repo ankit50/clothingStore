@@ -30,7 +30,6 @@ const addProduct = async (req, res) => {
       // Clean up local file after upload
       fs.unlinkSync(img.path);
     }
-    console.log(uploadedImageUrls);
     //product data to be added to database
     const productData = {
       name,
