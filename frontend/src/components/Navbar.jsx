@@ -5,7 +5,21 @@ import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch, getCartCount } = useContext(ShopContext);
+  const {
+    setShowSearch,
+    getCartCount,
+    navigate,
+    token,
+    setToken,
+    setCartItems,
+  } = useContext(ShopContext);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    setCartItems({});
+    navigate("/login");
+  };
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -40,20 +54,26 @@ const Navbar = () => {
           alt="search"
         />
         <div className="group relative">
-          <Link to={"/login"}>
-            <img
-              className="w-5 cursor-pointer"
-              src={assets.profile_icon}
-              alt="profile"
-            ></img>
-          </Link>
-          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-            <div className="flex flex-col items-center gap-2 w-36 py-3 bg-slate-200 text-gray-500 rounded-2xl">
-              <p className="cursor-pointer hover:text-black">My Profile</p>
-              <p className="cursor-pointer hover:text-black">Orders</p>
-              <p className="cursor-pointer hover:text-black">Logout</p>
+          <img
+            onClick={() => {
+              token ? null : navigate("/login");
+            }}
+            className="w-5 cursor-pointer"
+            src={assets.profile_icon}
+            alt="profile"
+          ></img>
+          {/*  dropdown */}
+          {token && (
+            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+              <div className="flex flex-col items-center gap-2 w-36 py-3 bg-slate-200 text-gray-500 rounded-2xl">
+                <p className="cursor-pointer hover:text-black">My Profile</p>
+                <p className="cursor-pointer hover:text-black">Orders</p>
+                <p onClick={logout} className="cursor-pointer hover:text-black">
+                  Logout
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <Link to="/cart" className="relative">
           <img src={assets.cart_icon} className="w-5 min-w-5" alt="cart" />
