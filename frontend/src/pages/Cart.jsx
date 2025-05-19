@@ -8,21 +8,23 @@ const Cart = () => {
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
   useEffect(() => {
-    const tempData = [];
-    for (const eachProduct in cartItems) {
-      const product = cartItems[eachProduct];
-      for (const size in product) {
-        if (product[size] > 0) {
-          tempData.push({
-            _id: eachProduct,
-            size: size,
-            quantity: product[size],
-          });
+    if (products.length > 0) {
+      const tempData = [];
+      for (const eachProduct in cartItems) {
+        const product = cartItems[eachProduct];
+        for (const size in product) {
+          if (product[size] > 0) {
+            tempData.push({
+              _id: eachProduct,
+              size: size,
+              quantity: product[size],
+            });
+          }
         }
       }
+      setCartData(tempData);
     }
-    setCartData(tempData);
-  }, [cartItems]);
+  }, [cartItems, products]);
 
   return (
     <div className="border-t pt-14">
