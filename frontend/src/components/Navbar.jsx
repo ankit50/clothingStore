@@ -67,7 +67,12 @@ const Navbar = () => {
             <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
               <div className="flex flex-col items-center gap-2 w-36 py-3 bg-slate-200 text-gray-500 rounded-2xl">
                 <p className="cursor-pointer hover:text-black">My Profile</p>
-                <p className="cursor-pointer hover:text-black">Orders</p>
+                <p
+                  onClick={() => navigate("/orders")}
+                  className="cursor-pointer hover:text-black"
+                >
+                  Orders
+                </p>
                 <p onClick={logout} className="cursor-pointer hover:text-black">
                   Logout
                 </p>
