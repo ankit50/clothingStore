@@ -1,5 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
+
 //place order using Cash On Delivery
 const placeOrder = async (req, res) => {
   try {
@@ -22,12 +23,24 @@ const placeOrder = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
 //place order usin Stripe Method
 const placeOrderStripe = async (req, res) => {};
+
 //place order using Razor method
 const placeOrderRazorpay = async (req, res) => {};
+
 //All orders data for admin panel
-const allOrders = async (req, res) => {};
+const allOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
 //User order data for FrontEnd
 const userOrders = async (req, res) => {
   try {
@@ -39,8 +52,10 @@ const userOrders = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
 //Update order status from admin panel
 const updateStatus = async (req, res) => {};
+
 export {
   placeOrder,
   placeOrderRazorpay,
