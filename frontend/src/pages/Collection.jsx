@@ -106,7 +106,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"Men"}
+                value={"MEN"}
                 onChange={toggleCategory}
               />
               MEN
@@ -115,7 +115,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"Women"}
+                value={"WOMEN"}
                 onChange={toggleCategory}
               />
               WOMEN
@@ -124,7 +124,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"Kids"}
+                value={"KIDS"}
                 onChange={toggleCategory}
               />
               Kids
