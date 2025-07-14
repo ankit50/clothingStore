@@ -19,7 +19,6 @@ A full-featured eCommerce application built using the **MERN Stack** (MongoDB, E
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB (Mongoose ODM)
 - **Authentication:** JSON Web Tokens (JWT), bcrypt
-- **Payment Gateway:** Stripe or PayPal (optional)
-- **Deployment:** Render / Vercel / Netlify / Heroku / Railway
+
 
 
