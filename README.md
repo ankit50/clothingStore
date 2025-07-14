@@ -22,5 +22,4 @@ A full-featured eCommerce application built using the **MERN Stack** (MongoDB, E
 - **Payment Gateway:** Stripe or PayPal (optional)
 - **Deployment:** Render / Vercel / Netlify / Heroku / Railway
 
-## 📁 Folder Structure
 
